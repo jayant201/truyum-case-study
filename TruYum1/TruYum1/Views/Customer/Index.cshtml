@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TruYum1.Models.MenuItem>
+@{
+    ViewBag.Title = "index";
+}
+
+<h2>Index</h2>
+<p>
+
+</p>
+
+<table>
+
+    <tr>
+        <th>@Html.Label("Name")</th>
+        <th>@Html.Label("Price")</th>
+        <th>@Html.Label("Active")</th>
+        <th>@Html.Label("Date of Launch")</th>
+        <th>@Html.Label("Name")</th>
+        <th>@Html.Label("Free Delivery")</th>
+        <th>@Html.Label("Action")</th>
+    </tr>
+    @foreach (var a in Model)
+    {
+        <tr>
+            <td>@a.Name</td>
+            <td>@a.Price</td>
+            <td>@a.Active</td>
+            <td>@a.DateOflaunch</td>
+            @{ foreach (var x in ViewBag.Clist)
+                {
+
+                    if (a.CategoryId == x.Id)
+                    {
+                        <td>
+                            <p>@x.Name</p>
+                        </td>
+                    }
+                }
+            }
+
+            <td>@a.FreeDelivery</td>
+
+            <td> @Html.ActionLink("Add to Cart", "Cart", new { id = a.Id })</td>
+        </tr>
+    }
+</table>
+
